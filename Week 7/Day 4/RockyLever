@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+map<ll,ll>m;
+int solve(int x)
+{
+    int msb=0;
+    while(x)
+    {
+        msb++;
+        x = (x >> 1);
+    }
+    return msb;
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<ll> v(n),a(n);
+        for(int i=0;i<n;i++)
+        {
+            cin>>v[i];
+        }
+        for(int i=0;i<n;i++)
+        {
+            a[i]=solve(v[i]);
+        }
+        for(int i=0;i<n;i++)
+        {
+            m[a[i]]++;
+        }
+        ll ans=0;
+        for(int i=0;i<n;i++)
+        {
+            m[a[i]]--;
+            ans += m[a[i]];
+        }
+        cout <<ans<<endl;
+    }
+    return 0;
+}
