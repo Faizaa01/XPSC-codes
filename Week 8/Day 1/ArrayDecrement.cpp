@@ -24,7 +24,7 @@ int main()
             cin >> b[i];
 
         bool yo = true;
-        int dif=-1;
+        int dif=-1, z=-1;
         for (int i=0; i<n; i++)
         {
             if(a[i]<b[i])
@@ -33,10 +33,10 @@ int main()
                 break;
             }
             int x=a[i]-b[i];
-            if(dif== -1) dif=x;
             if(b[i]>0)
             {
-                if(dif!=x)
+                if(dif== -1) dif=x;
+                else if(dif!=x)
                 {
                     yo = false;
                     break;
@@ -44,14 +44,13 @@ int main()
             }
             else if(b[i]==0)
             {
-                if(x>dif && dif!=-1)
-                {
-                    yo = false;
-                    break;
-                }
+                z=max(z,x);
             }
         }
-
+        if(z>dif && dif!=-1)
+        {
+            yo = false;
+        }
         if(yo) yes;
         else no;
     }
