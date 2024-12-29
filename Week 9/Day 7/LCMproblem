@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int l,r;
+        cin>>l>>r;
+        int x=l,y=2*l;
+        if(y<=r) cout<<x<<" "<<y<<endl;
+        else cout<<-1<<" "<<-1<<endl;
+    }
+    return 0;
+}
