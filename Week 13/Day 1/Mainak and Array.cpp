@@ -11,60 +11,35 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n,a,b;
-        cin >>n>>a>>b;
-        vector<int>v;
-        v.push_back(a);
-        int sz=n;
-        for(int i=1;i<n/2;i++)
+        int n;
+        cin >>n;
+        vector<int> a(n);
+        for (int i=0;i<n;i++)
         {
-            while(sz==a || sz==b)
-            {
-                sz--;
-            }
-            v.push_back(sz);
-            sz--;
+            cin >>a[i];
         }
-        sz=1;
-        for(int i=n/2;i<n;i++)
+        if(n==1)
         {
-            while(sz==a || sz==b)
-            {
-                sz++;
-            }
-            v.push_back(sz);
-            sz++;
-        }
-        v[n-1]=b;
-        bool yo=true;
-        for(int i=0;i<n/2;i++)
-        {
-            if(v[i]<a)
-            {
-                yo=false;
-                break;
-            }
-        }
-        for(int i=n/2;i<n;i++)
-        {
-            if(v[i]>b)
-            {
-                yo=false;
-                break;
-            }
-        }
-        if(yo)
-        {
-            for(auto val:v)
-            {
-                cout<<val<<" ";
-            }
+            cout<<0<<endl;
         }
         else
         {
-            cout<<-1;
+            int ans = a[n-1]-a[0];
+
+            for(int i=1;i<n;i++)
+            {
+                ans = max(ans,a[i]-a[0]);
+            }
+            for(int i=0;i<n-1;i++)
+            {
+                ans = max(ans,a[n-1]-a[i]);
+            }
+            for(int i=1;i<n;i++)
+            {
+                ans = max(ans,a[i-1]-a[i]);
+            }
+            cout<<ans<<endl;
         }
-        cout<<endl;
     }
     return 0;
 }
