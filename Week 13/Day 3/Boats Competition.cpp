@@ -13,42 +13,29 @@ int main()
     {
         int n;
         cin>>n;
-        vector<int>w(n);
+        map<int,int>m;
         for(int i=0;i<n;i++)
         {
-            cin>>w[i];
+            int w;
+            cin>>w;
+            m[w]++;
         }
-        sort(w.begin(),w.end());
-        
-        int a[55]={0};
-        for(int k=0;k<55;k++)
+        int mx=0;
+        for(int i=2;i<=(2*n);i++)
         {
-            int i=0,j=n-1,cnt=0;
-            while(i<j)
+            int total=0;
+            for(auto v:m)
             {
-                int x = w[i]+w[j];
-                if(x==k)
+                int x=i-v.first;
+                if(x>=1 && m.count(x))
                 {
-                    i++,j--;
-                    cnt++;
-                }
-                else if(x<k)
-                {
-                    i++;
-                }
-                else
-                {
-                    j--;
+                    total+=min(v.second,m[x]);
                 }
             }
-            a[k]=cnt;
+            total/=2;
+            mx=max(mx,total);
         }
-        int ans=0;
-        for(int i=0;i<55;i++)
-        {
-            ans=max(ans,a[i]);
-        }
-        cout<<ans<<endl;
+        cout<<mx<<endl;
     }
     return 0;
 }
