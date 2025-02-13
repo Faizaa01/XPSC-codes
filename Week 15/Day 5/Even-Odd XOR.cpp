@@ -13,33 +13,54 @@ int main()
     cin>>t;
     while(t--)
     {
-        string s;
-        cin>>s;
-        int n=s.size();
-        int ans=n;
-        for(int i=0;i<26;i++)
+        int n;
+        cin>>n;
+        if(n==3)
         {
-            int x=0,y=0;
-            char c = 'a'+i;
-            for(int j=0;j<n;j++)
+            cout<<"2 1 3"<<endl;
+            continue;
+        }
+        if(n%4==0)
+        {
+            ll a=(1ll<<30);
+            ll x=1;
+            for(int i=1;i<=n/2;i++)
             {
-                if(s[j]==c)
-                {
-                    x = max(x,y);
-                    y=0;
-                }
-                else y++;
+                cout<<x<<" "<<x+a<<" ";
+                x++;
             }
-            x=max(x,y);
-            ans=min(ans,x);
         }
-        int result=0;
-        while(ans>0)
+        else if(n%2==1)
         {
-            ans=ans/2;
-            result++;
+            ll a = (1ll<<25);
+            ll b = (1ll<<26);
+            ll x=1;
+            cout<<b<<" ";
+            for(int i=1;i<n/2;i++)
+            {
+                cout<<x<<" "<<x+a<<" ";
+                x++;
+            }
+            if((n/2)%2==0)
+            {
+                b+=a;
+            }
+            cout<<n/2<<" "<<(n/2)+b<<" ";
         }
-        cout<<result<<endl;
+        else
+        {
+            ll a = (1ll<<25);
+            ll b = (1ll<<26);
+            ll x=1;
+            cout<<0<<" "<<b<<" ";
+            for(int i=1;i<=(n/2)-2;i++)
+            {
+                cout<<x<<" "<<x+a<<" ";
+                x++;
+            }
+            cout<<x<<" "<<x+a+b<<" ";
+        }
+        cout<<endl;
     }
     return 0;
 }
